@@ -252,6 +252,17 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/kaili-managed-0.1.0/kaili-managed-0.1.0.tgz
     version: 0.1.0
+  kiali-managed:
+  - apiVersion: v2
+    appVersion: "1.17"
+    created: "2023-04-21T19:48:44.548102442Z"
+    description: A Helm chart for Kubernetes
+    digest: 4d695d126ccf5d06bbf3f29e5cae41be41496c6a33ce2911635216c70b4a9757
+    name: kiali-managed
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/kiali-managed-0.1.0/kiali-managed-0.1.0.tgz
+    version: 0.1.0
   linkerd:
   - apiVersion: v2
     appVersion: 2.12.3
@@ -351,4 +362,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-21T19:42:53.902170221Z"
+generated: "2023-04-21T19:48:44.548120541Z"

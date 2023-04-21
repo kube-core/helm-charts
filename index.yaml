@@ -104,6 +104,18 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/istio-base-1.17.2/istio-base-1.17.2.tgz
     version: 1.17.2
+  - apiVersion: v2
+    appVersion: 1.17.2
+    created: "2023-04-21T19:42:53.760502109Z"
+    description: Helm chart for deploying Istio cluster resources and CRDs
+    digest: 28b1b3bf62f390368ac864f920403bbe23c8ba3799be9494ba5e456b20760424
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - istio
+    name: istio-base
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/istio-base-0.1.0/istio-base-0.1.0.tgz
+    version: 0.1.0
   istio-discovery:
   - apiVersion: v2
     appVersion: 1.17.2
@@ -121,6 +133,22 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/istio-discovery-1.17.2/istio-discovery-1.17.2.tgz
     version: 1.17.2
+  - apiVersion: v2
+    appVersion: 1.17.2
+    created: "2023-04-21T19:42:53.90215062Z"
+    description: Helm chart for istio control plane
+    digest: c697848d6eb83e2a59f2280b4e8ef06125afc7f3db997db5829df051956f878f
+    icon: https://istio.io/latest/favicons/android-192x192.png
+    keywords:
+    - istio
+    - istiod
+    - istio-discovery
+    name: istio-discovery
+    sources:
+    - http://github.com/istio/istio
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/istio-discovery-0.1.0/istio-discovery-0.1.0.tgz
+    version: 0.1.0
   istio-elasticsearch:
   - apiVersion: v2
     appVersion: 8.3.3
@@ -323,4 +351,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-21T19:24:19.633158868Z"
+generated: "2023-04-21T19:42:53.902170221Z"

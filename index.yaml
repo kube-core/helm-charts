@@ -63,6 +63,15 @@ entries:
     version: 0.1.0
   flux-config:
   - apiVersion: v2
+    created: "2023-04-29T01:20:29.035518648Z"
+    description: A Helm chart for Kubernetes
+    digest: b2a6db1f03b845652e0f3c7a2f892660be3984562e3494c4a88aa0ee58cc8bce
+    name: flux-config
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/flux-config-0.2.0/flux-config-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2023-04-21T19:24:15.811560552Z"
     description: A Helm chart for Kubernetes
     digest: 9f1187d6b5f712d0282df80b4249a23a549b4cc4bb07aff3dd32deec8c6c5c1e
@@ -72,6 +81,15 @@ entries:
     - https://github.com/kube-core/helm-charts/releases/download/flux-config-0.1.0/flux-config-0.1.0.tgz
     version: 0.1.0
   flux-repository:
+  - apiVersion: v2
+    created: "2023-04-29T01:20:29.144833267Z"
+    description: A Helm chart for Kubernetes
+    digest: f0243d7dcbbed22227c61f0b29349eb00775a32206e981f8af8e289385362038
+    name: flux-repository
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/flux-repository-0.2.0/flux-repository-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v2
     created: "2023-04-21T19:24:15.959614188Z"
     description: A Helm chart for Kubernetes
@@ -362,4 +380,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-21T19:48:44.548120541Z"
+generated: "2023-04-29T01:20:29.144849067Z"

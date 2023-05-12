@@ -12,6 +12,15 @@ entries:
     version: 0.1.0
   cluster-logging:
   - apiVersion: v2
+    created: "2023-05-12T16:18:04.062363619Z"
+    description: A Helm chart for Kubernetes
+    digest: 5cf8e5ae51db5266f48bbbf1efadef80d9b0aa833600861ea9732fc46de1a5d1
+    name: cluster-logging
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/cluster-logging-0.1.1/cluster-logging-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2023-04-21T19:24:14.972221526Z"
     description: A Helm chart for Kubernetes
     digest: 5f77696878eca4f97ca5150477fb9d4f46e35c86a282c2adad80c78cb7f9f372
@@ -380,4 +389,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-29T01:20:29.144849067Z"
+generated: "2023-05-12T16:18:04.062384019Z"

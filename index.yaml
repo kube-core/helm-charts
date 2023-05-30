@@ -51,6 +51,15 @@ entries:
     version: 0.1.0
   env-config:
   - apiVersion: v2
+    created: "2023-05-30T18:59:08.838031761Z"
+    description: A Helm chart for Kubernetes
+    digest: 48253f2b11a56cc6cae20aa6b44786f7f9227339299ff630b94923bd86835116
+    name: env-config
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/env-config-0.1.2/env-config-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2023-05-30T18:32:32.314551174Z"
     description: A Helm chart for Kubernetes
     digest: e1f979acab2f9f30ac55a1e0b63585a7dd89b500cf267cac9889ac16cbd875ac
@@ -398,4 +407,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-30T18:32:32.314576074Z"
+generated: "2023-05-30T18:59:08.838367868Z"

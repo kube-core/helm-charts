@@ -317,6 +317,17 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/kiali-managed-0.1.0/kiali-managed-0.1.0.tgz
     version: 0.1.0
+  landlord:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-12T00:00:54.04347631Z"
+    description: A Helm chart for Kubernetes
+    digest: 90dce7fbb3b52478c62065b08fbe3c0b2511e121a9d6a06917863c1a729d7bc7
+    name: landlord
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/landlord-0.1.0/landlord-0.1.0.tgz
+    version: 0.1.0
   linkerd:
   - apiVersion: v2
     appVersion: 2.12.3
@@ -416,4 +427,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-31T09:19:33.398623113Z"
+generated: "2023-10-12T00:00:54.043505911Z"

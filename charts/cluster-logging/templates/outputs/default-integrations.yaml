@@ -26,7 +26,7 @@
 
 
 # Outputs for Tekton
-{{ if (eq .Values.cluster.logging.integrations.tekton.enabled true) }}
+{{ if .Values.cluster.logging.integrations.tekton.enabled}}
 
 {{ if (eq .Values.cluster.logging.integrations.gcs.enabled true) }}
 ---

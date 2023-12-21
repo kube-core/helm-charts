@@ -38,7 +38,7 @@ spec:
   image: k8skubecore/kube-core
   interval: 1h
   # secretRef:
-  #   name: docker-registry-gcr-admin
+  #   name: docker-registry-admin
 {{ end }}
 
 {{ end }}

@@ -1,5 +1,5 @@
 cloud:
-  provider: gcp # aws|gcp
+  provider: gcp # aws|gcp|scw
   default:
     location: europe-west1
 
@@ -12,6 +12,18 @@ patch:
   serviceAccountName: my-patch-operator-sa
 
 resource:
+  cro-registry:
+    enabled: false
+  scw-registry:
+    enabled: false
+  scw-serviceaccountkey:
+    enabled: false
+  scw-projectiammember:
+    enabled: false
+  scw-serviceaccount:
+    enabled: false
+  scw-bucket:
+    enabled: false
   eck-elasticsearch:
     enabled: false
     storageSize: 20Gi
@@ -113,6 +125,8 @@ resource:
     #             port:
     #               name: grpc
   patch-recordsetinjectipfromlb:
+    enabled: false
+  patch-scwapikey:
     enabled: false
   prometheus-rule:
     enabled: false
@@ -337,7 +351,7 @@ resources: {}
 
 
 # projectIAMCustomRoles:
-#   gcr-admin:
+#   registry-admin:
 #     permissions:
 #     - storage.objects.get
 #     - storage.objects.create

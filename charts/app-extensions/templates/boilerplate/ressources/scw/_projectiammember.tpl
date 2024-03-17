@@ -47,7 +47,21 @@ spec:
           {{ if eq $value "RegistryRead"}}
           - ContainerRegistryReadOnly
           {{ end }}
+          {{ if eq $value "SecretAdmin"}}
+          - SecretManagerFullAccess
+          - SecretManagerSecretCreate
+          - SecretManagerSecretDelete
+          - SecretManagerSecretWrite
           {{ end }}
+          {{ if eq $value "SecretRead"}}
+          - SecretManagerReadOnly
+          - SecretManagerSecretAccess
+          {{ end }}
+          {{ end }}
+          {{ range $value := (.value.customRoles) }}
+          - {{ . }}
+          {{ end }}
+
     # member: serviceAccount:{{ $name }}@{{ $.common.cloud.project }}.iam.gserviceaccount.com
     # role: {{ coalesce .value.role (printf "projects/%s/roles/%s" $.common.cloud.project $name) }}
     # serviceAccountIdRef:

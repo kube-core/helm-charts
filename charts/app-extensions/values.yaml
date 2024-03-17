@@ -1,3 +1,5 @@
+dump: false
+
 cloud:
   provider: gcp # aws|gcp|scw
   default:
@@ -13,6 +15,10 @@ patch:
 
 resource:
   cro-registry:
+    enabled: false
+  scw-vpc:
+    enabled: false
+  scw-project:
     enabled: false
   scw-registry:
     enabled: false

@@ -29,3 +29,14 @@
 {{- include (printf "app-extensions.%s" ($resourceName | kebabcase)) $mergedvalues }}
 {{- end }}
 {{- end }}
+{{ if $values.dump }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-app-extensions-resources
+  namespace: {{ .Release.Namespace }}
+data:
+  values.yaml: |
+    resources: {{ toYaml $values.resources | nindent 6}}
+{{ end }}

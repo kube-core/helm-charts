@@ -29,7 +29,6 @@ spec:
 {{ end }}
 {{ if .Values.gitops.config.full.imageRepository }}
 ---
-# Source: n9-api/templates/flux/imagerepository.yaml
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:

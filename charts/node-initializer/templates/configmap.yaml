@@ -14,6 +14,4 @@ data:
     ROOT_MOUNT_DIR="${ROOT_MOUNT_DIR:-/root}"
 
     # We use chroot to run the following commands in the host root (mounted as the /root volume in the container)
-    sysctl -w fs.inotify.max_user_watches=655360
-
-
+    {{- .Values.nodeInitConfig | nindent 4 }}

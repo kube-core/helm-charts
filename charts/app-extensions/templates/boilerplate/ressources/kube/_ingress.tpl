@@ -1,22 +1,29 @@
 {{- define "app-extensions.kube-ingress" -}}
-{{- $name := (coalesce .value.name .key) }}
-{{- $resourceName := (coalesce .value.resourceName .value.name .key) }}
-{{- $namespace := (coalesce .value.namespace "default") }}
-{{- $domain := (coalesce .value.domain .common.cluster.config.domain) }}
+{{ $values := .value }}
+{{- $name := (coalesce $values.name .key) }}
+{{- $resourceName := (coalesce $values.resourceName $values.name .key) }}
+{{- $composition := .composition }}
+{{- $namespace := (coalesce $composition.namespace $values.namespace "default") }}
+{{- $domain := (coalesce $values.domain .common.cluster.config.domain) }}
 {{- $subDomainBase := $namespace }}
-{{- if .value.subDomainBase }}
-{{- $subDomainBase = .value.subDomainBase }}
+{{- if $values.subDomainBase }}
+{{- $subDomainBase = $values.subDomainBase }}
 {{- end }}
 {{- $nameTemplate := printf "%s.%s" $name $namespace -}}
 {{- if eq $name $namespace }}
 {{- $nameTemplate = $name }}
 {{- end }}
-{{- $host := (coalesce .value.host (printf "%s.%s.%s" (coalesce .value.subDomain $nameTemplate) $subDomainBase $domain)) }}
-{{- if .value.subDomainOverride }}
-{{- $host = (coalesce .value.host (printf "%s.%s" .value.subDomainOverride $domain)) }}
+{{- $host := (coalesce $values.host (printf "%s.%s.%s" (coalesce $values.subDomain $nameTemplate) $subDomainBase $domain)) }}
+{{- if $values.subDomainOverride }}
+{{- $host = (coalesce $values.host (printf "%s.%s" $values.subDomainOverride $domain)) }}
 {{- end }}
-{{- $path := (coalesce .value.path "/") }}
-{{- $pathType := (coalesce .value.pathType "ImplementationSpecific") }}
+{{- $path := (coalesce $values.path "/") }}
+{{- $pathType := (coalesce $values.pathType "ImplementationSpecific") }}
+{{- $hostPrefix := $values.hostPrefix }}
+{{- if $hostPrefix }}
+{{- $host = (printf "%s.%s" $hostPrefix $host) }}
+{{- end }}
+
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -24,27 +31,36 @@ metadata:
   name: {{ $resourceName }}
   namespace: {{ $namespace }}
   labels:
-    {{- with .value.labels }}
+    {{- with $values.labels }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
   annotations:
-    {{- with .value.annotations }}
+    {{- include "app.annotations" . | nindent 4 }}
+    {{- with $values.annotations }}
       {{- toYaml . | nindent 4 }}
     {{- end }}
+    {{ if $values.serviceUpstream }}
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    {{ if $values.upstreamVhost }}
+    nginx.ingress.kubernetes.io/upstream-vhost: "{{ $values.upstreamVhost }}"
+    {{ else }}
+    nginx.ingress.kubernetes.io/upstream-vhost: "{{ coalesce $values.serviceName $name }}.{{ $namespace }}.svc.cluster.local"
+    {{ end }}
+    {{ end }}
 spec:
-  ingressClassName: {{ coalesce .value.ingressClassName "nginx" }}
-  {{- if (.value.tls) }}
+  ingressClassName: {{ coalesce $values.ingressClassName "nginx" }}
+  {{- if ($values.tls) }}
   tls:
     - hosts:
       - {{ $host }}
-      {{- if .value.customSecretName }}
-      secretName: {{ .value.customSecretName }}
+      {{- if $values.customSecretName }}
+      secretName: {{ $values.customSecretName }}
       {{- else }}
       secretName: {{ $host | replace "." "-" }}-tls
       {{- end }}
   {{- end }}
   rules:
-  {{- if .value.defaultRules }}
+  {{- if $values.defaultRules }}
   - host: {{ $host }}
     http:
       paths:
@@ -52,16 +68,18 @@ spec:
           pathType: {{ $pathType }}
           backend:
             service:
-              name: {{ coalesce .value.serviceName $name }}
+              name: {{ coalesce $values.serviceName $name }}
               port:
-                {{- if (not .value.portNumber) }}
-                name: {{ coalesce .value.portName "http" }}
+                {{- if $values.portName }}
+                name: {{ $values.portName }}
+                {{- else if $values.portNumber }}
+                number: {{ $values.portNumber }}
                 {{- else }}
-                number: {{ .value.portNumber }}
+                name: http
                 {{- end }}
   {{- end -}}
-  {{- if .value.customRules }}
-  {{- range .value.customRules }}
+  {{- if $values.customRules }}
+  {{- range $values.customRules }}
   - {{ toYaml . | nindent 4 | trim }}
   {{- end -}}
   {{- end -}}

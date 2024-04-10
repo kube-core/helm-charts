@@ -5,4 +5,4 @@ icon: https://istio.io/latest/favicons/android-192x192.png
 keywords:
 - istio
 name: istio-base
-version: 0.1.0
+version: 0.1.1

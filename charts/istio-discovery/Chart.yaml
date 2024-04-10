@@ -9,4 +9,4 @@ keywords:
 name: istio-discovery
 sources:
 - http://github.com/istio/istio
-version: 0.1.0
+version: 0.1.1

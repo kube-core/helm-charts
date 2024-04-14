@@ -24,6 +24,8 @@
 {{- $host = (printf "%s.%s" $hostPrefix $host) }}
 {{- end }}
 
+{{ $portName := coalesce $values.portName "http" }}
+{{ $portNumber := coalesce $values.portNumber "8080" }}
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -70,10 +72,10 @@ spec:
             service:
               name: {{ coalesce $values.serviceName $name }}
               port:
-                {{- if $values.portName }}
-                name: {{ $values.portName }}
-                {{- else if $values.portNumber }}
-                number: {{ $values.portNumber }}
+                {{- if $portName }}
+                name: {{ $portName }}
+                {{- else if $portNumber }}
+                number: {{ $portNumber }}
                 {{- else }}
                 name: http
                 {{- end }}

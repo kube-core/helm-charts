@@ -102,8 +102,6 @@ resource:
     enabled: false
   gcp-urlmap:
     enabled: false
-  keda-scaledobject:
-    enabled: false
   kube-deployment:
     enabled: false
     defaultImagePolicy: default
@@ -279,12 +277,35 @@ resource:
     cpu: 100
     memory: 80
   kube-pdb:
-    enabled: false
     # -- Create Pod Disruption Budget
     enabled: false
     # minAvailable: 1
   app-ingress:
     enabled: false
+    default: true
+    annotations: {}
+    labels: {}
+    className: nginx
+    globalEasyTls: true
+    # host: app.demo.scw.frog-cloud.io
+    # serviceName: test
+    # portName: ""
+    # portNumber: 3030
+    # path: /test/123
+    # pathType: "Stuff"
+
+    options:
+      mergeable: false
+      mergeableType: "master" # Can be "master" or "minion"
+      # accessFiltered: true
+      # allowedVisitors: self,admin
+      # autoDiscover: true
+      # clusterIssuer: letsencrypt-dns-production
+      # previewVisitors: self,admin
+      # proxyBodySize: 200m
+      # serviceUpstream: true
+      # ttl: 5
+      # upstreamVhost: nk-api.prod.svc.cluster.local
   kube-ingress:
     enabled: false
     defaultRules: true
@@ -325,8 +346,6 @@ resource:
     enabled: false
   patch-scwapikey:
     enabled: false
-  prometheus-rule:
-    enabled: false
   rabbitmq-binding:
     enabled: false
   rabbitmq-cluster:
@@ -342,8 +361,6 @@ resource:
   rabbitmq-user:
     enabled: false
   rabbitmq-vhost:
-    enabled: false
-  sloth-prometheusservicelevel:
     enabled: false
   pyrra-servicelevelobjective:
     enabled: false

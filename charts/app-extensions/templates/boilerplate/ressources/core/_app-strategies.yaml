@@ -49,7 +49,7 @@
 {{ if $previewIngress }}
 {{ $_ := set $previewIngress "host" (printf "preview.%s" $previewIngress.host) }}
 {{ $_ := set $previewIngress "type" "preview" }}
-{{ $_ := set $previewIngress "svcName" (.value.name) }}
+{{ $_ := set $previewIngress "serviceName" (.value.name) }}
 {{ end }}
 ---
 {{ if $previewIngress }}

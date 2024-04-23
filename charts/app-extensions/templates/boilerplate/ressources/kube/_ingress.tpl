@@ -76,8 +76,6 @@ spec:
                 name: {{ $portName }}
                 {{- else if $portNumber }}
                 number: {{ $portNumber }}
-                {{- else }}
-                name: http
                 {{- end }}
   {{- end -}}
   {{- if $values.customRules }}

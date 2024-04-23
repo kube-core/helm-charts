@@ -38,7 +38,11 @@ Selector labels
 */}}
 {{- define "app.selectorLabels" -}}
 app.kubernetes.io/instance: {{ coalesce .instance .common.release.name }}
+{{- if .composition}}
 app.kubernetes.io/name: {{ coalesce .name .value.name .composition.name .common.release.name }}
+{{- else }}
+app.kubernetes.io/name: {{ coalesce .name .value.name .common.release.name }}
+{{- end }}
 {{- end }}
 
 

@@ -34,7 +34,7 @@
 {{ $_ := set $preview.value "name" (printf "%s-preview" $preview.value.name) }}
 {{ $_ := set $preview.value.ingress "host" (printf "preview.%s" $preview.value.ingress.host) }}
 {{ $_ := set $preview.value.ingress "type" "preview" }}
-{{ $_ := set $preview "svcName" (.value.name) }}
+{{ $_ := set $preview "serviceName" (.value.name) }}
 ---
 {{ include "app.ingress" $preview }}
 {{ end }}

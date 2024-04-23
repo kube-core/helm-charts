@@ -10,6 +10,9 @@
 
 {{- $deployment := (index $components "kube-deployment") }}
 
+{{- $portName := coalesce $values.portName $values.name "http" }}
+{{- $targetPort := coalesce $values.targetPort $portName }}
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,9 +34,9 @@ spec:
     {{- include "app.selectorLabels" . | nindent 4 }}
   ports:
     - port: {{ $values.port }}
-      targetPort: http
+      targetPort: {{ $targetPort }}
       protocol: TCP
-      name: http
+      name: {{ $portName }}
   {{- if $deployment.metrics.enabled }}
     - port: {{ $deployment.metrics.port }}
       targetPort: metrics

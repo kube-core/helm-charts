@@ -47,4 +47,7 @@ annotations:
   {{- if $values.options.upstreamVhost }}
   nginx.ingress.kubernetes.io/upstream-vhost: {{ $values.options.upstreamVhost | quote }}
   {{- end }}
+  {{- if $values.options.mergeable }}
+  nginx.org/mergeable-ingress-type: {{ $values.options.mergeableType | quote }}
+  {{- end }}
 {{- end }}

@@ -59,13 +59,13 @@ spec:
     metadata:
       serverAddress: {{ $resource.prometheusEndpoint }}
       metricName: "{{ $nameBase }}_rabbitmq_in_queue_messages"
-      threshold: {{ $resource.rabbitmq.default.in 1 | quote }}
+      threshold: {{ (coalesce $resource.rabbitmq.default.in 1) | quote }}
       query: "{{ $nameBase }}_rabbitmq_in_queue_messages"
   - type: prometheus
     metadata:
       serverAddress: {{ $resource.prometheusEndpoint }}
       metricName: "{{ $nameBase }}_rabbitmq_out_queue_messages"
-      threshold: {{ $resource.rabbitmq.default.out 1 | quote }}
+      threshold: {{ (coalesce $resource.rabbitmq.default.out 1) | quote }}
       query: "{{ $nameBase }}_rabbitmq_out_queue_messages"
   {{- end }}
 

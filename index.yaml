@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   app-extensions:
   - apiVersion: v2
+    created: "2024-05-03T08:15:50.542466555Z"
+    description: A Helm chart for Kubernetes
+    digest: a812ac8f86670dcc0d4d86edec73babee8ee1b24cbfa85b6bed613faa3d4cb5a
+    name: app-extensions
+    type: application
+    urls:
+    - https://github.com/kube-core/helm-charts/releases/download/app-extensions-0.2.2/app-extensions-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
     created: "2024-04-14T21:09:59.404995982Z"
     description: A Helm chart for Kubernetes
     digest: 805b3c84074fa260bf5c6b7b0c48aae640a32d622879fa24ca5acc06bd7d701c
@@ -783,4 +792,4 @@ entries:
     urls:
     - https://github.com/kube-core/helm-charts/releases/download/test-logging-0.1.0/test-logging-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-14T21:09:59.40509099Z"
+generated: "2024-05-03T08:15:50.542567875Z"

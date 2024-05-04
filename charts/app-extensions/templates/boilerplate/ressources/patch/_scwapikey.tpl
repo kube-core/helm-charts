@@ -21,8 +21,8 @@ spec:
           secret_key: {{ `{{ index (index . 0).data "attribute.secret_key" | b64dec }}` }}
           scw_access_key: {{ `{{ (index . 1).status.atProvider.accessKey }}` }}
           scw_secret_key: {{ `{{ index (index . 0).data "attribute.secret_key" | b64dec }}` }}
-          registry_user: {{ .common.cloud.projectShortName }}-{{ .common.cluster.config.name }}
-          registry_auth: {{ .common.cloud.projectShortName }}-{{ .common.cluster.config.name }}:{{ `{{ index (index . 0).data "attribute.secret_key" | b64dec }}` }}
+          registry_user: {{ .common.cloud.projectName }}-{{ .common.cluster.config.name }}
+          registry_auth: {{ .common.cloud.projectName }}-{{ .common.cluster.config.name }}:{{ `{{ index (index . 0).data "attribute.secret_key" | b64dec }}` }}
           cloud: |
             [default]
             aws_access_key_id={{ `{{ (index . 1).status.atProvider.accessKey }}` }}

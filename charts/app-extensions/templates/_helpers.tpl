@@ -105,14 +105,19 @@ app.kubernetes.io/name: {{ coalesce .name .value.name .common.release.name }}
 
 
 {{- define "app-extensions.include.dump" -}}
-{{- if .Values.dump }}
+{{- if .Values.dump.enabled }}
+{{ $status := coalesce .Values.dump.status "dump" }}
+{{ $releaseId := printf "%s/%s/%s" .Release.Context .Release.Namespace .Release.Name }}
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: {{ .Release.Name }}-app-extensions-resources
+  name: {{ .Release.Name }}-{{ $status }}
   namespace: {{ .Release.Namespace }}
 data:
+  releaseId: "{{ $releaseId }}"
+  status: "{{ $status }}"
+  message: "{{ .Values.dump.message }}"
   values.yaml: |
     resources: {{ toYaml .Values | nindent 6 }}
 {{- end }}

@@ -1,4 +1,7 @@
-dump: false
+dump:
+  enabled: false
+  status: ""
+  message: ""
 
 cloud:
   provider: gcp # aws|gcp|scw
@@ -116,9 +119,11 @@ resource:
     # -- Default to 1 if not set for the podDisruptionBudget
     minAvailable: 1
     # -- Default Rolling Update
-    strategy: {}
+    strategy:
+      {}
       # type: Recreate
-    securityContext: {}
+    securityContext:
+      {}
       # capabilities:
       #   drop:
       #   - ALL
@@ -129,7 +134,8 @@ resource:
     initContainer:
       enabled: false
       command: []
-      resources: {}
+      resources:
+        {}
         #  limits:
         #    memory: 100M
         #  requests:
@@ -139,14 +145,14 @@ resource:
     logging:
       enabled: false # Adds logging.kube-core.io/flow-name: app annotation to catch logs with logging-operator
 
-
     ## Relate to the templating of the pods managed by the deployment
     pod:
       workingDir: ""
       command: []
       args: []
       annotations: {}
-      securityContext: {}
+      securityContext:
+        {}
         # fsGroup: 2000
       envFrom:
         enabled: true
@@ -154,17 +160,20 @@ resource:
         secrets: []
       env:
         # -- Define env values for pods, example commented out in values.yaml files
-        values: []
+        values:
+          []
           # - name: ENV_VALUES
           #   value: "something"
         # -- Define secret env values for pods, example commented out in values.yaml files
-        secrets: []
+        secrets:
+          []
           # - name: SECRET_ENV_VALUES # if not set, secretKey will be used
           #   secretName: my-in-cluster-secret
           #   secretKey: its-content
           #   optional: false (default), when true: the lack of this secret ENV VALUES won't prevent the pod from starting
         # -- Define and sent env Values as a map, useful for yaml merge
-        valuesMap: {}
+        valuesMap:
+          {}
           # ENV_VALUES: "something"
       additionalEnv:
         values: []
@@ -185,12 +194,14 @@ resource:
         #   defaultMode: 256 # (optional) default to 256
         #   readOnly: true # (optional) default to true
         # -- Define map of configmap to mount, useful for yaml merge
-        configMapMap: {}
+        configMapMap:
+          {}
           # configMapName: mountPath
         # -- Define pvc to attach and mount, example commented out in values.yaml files
 
     ## Defined pods ressources
-    resources: {}
+    resources:
+      {}
       # limits:
       #   cpu: 100m
       #   memory: 128Mi
@@ -218,7 +229,6 @@ resource:
       tag: "latest"
       # -- Overrides tag if set
       digest: ""
-
 
     ## Define value relative to kube scheduling
     scheduling:
@@ -258,7 +268,6 @@ resource:
         # periodSeconds: 10
         # timeoutSeconds: 1
         # failureThreshold: 3
-
 
   kube-service:
     enabled: false
@@ -317,7 +326,8 @@ resource:
     # -- Automatically generate tls certificate secret for defined hosts
     globalEasyTls: false
     labels: {}
-    annotations: {}
+    annotations:
+      {}
       # kubernetes.io/ingress.class: nginx
     hosts: []
     # ingressClassName: nginx
@@ -450,14 +460,14 @@ resource:
       kind: Deployment
       name: keda-scaledobject
     extraTriggers: []
-  # extraTriggers:
-  # - type: prometheus
-  #   metricType: Value
-  #   metadata:
-  #     serverAddress: http://prometheus-operated.monitoring.svc.cluster.local:9090
-  #     metricName: "my_metric"
-  #     threshold: "1"
-  #     query: "my_prom_query"
+    # extraTriggers:
+    # - type: prometheus
+    #   metricType: Value
+    #   metadata:
+    #     serverAddress: http://prometheus-operated.monitoring.svc.cluster.local:9090
+    #     metricName: "my_metric"
+    #     threshold: "1"
+    #     query: "my_prom_query"
     rabbitmq:
       enabled: false
       default:
@@ -507,7 +517,8 @@ resource:
       path: ./config
       strategy: Setters
 # resources: {}
-resources: {}
+resources:
+  {}
   # kube-ingress:
   #   test:
   #     enabled: true
@@ -529,9 +540,6 @@ resources: {}
   #     enabled: true
   #   app-test-2:
   #     enabled: true
-
-
-
 
 # resources:
 
@@ -572,7 +580,6 @@ resources: {}
 #   rabbitmq-policy:
 #     nk-api: {}
 
-
 #   rabbitmq-queue:
 #     nk-api: {}
 
@@ -584,9 +591,6 @@ resources: {}
 #       # type: direct
 #       # arguments:
 #       #   alternate-exchange: my-alt-exchange
-
-
-
 
 # projectIAMCustomRoles:
 #   registry-admin:
@@ -731,16 +735,14 @@ composition:
       # If autoscaling is controller by something else than HPA, enable it
       disableReplicas: false
 
-
-
-      flux: {}
+      flux:
+        {}
         # enabled: false
 
         # imageRepository:
 
         # imageUpdateAutomation:
         #   enabled: false
-
 
       # imagePolicy: "my-policy" # Use this to override
       # imagePolicies:
@@ -781,172 +783,170 @@ composition:
       flux-imageupdateautomation:
         enabled: false
 
-compositions: {}
+compositions:
+  {}
   # app:
   #   nk-api:
   #     enabled: true
-      # name: nk-api
-      # config:
-      #   api:
-      #     deployedEnv: prod
-      #     logLevel: info
-      #     type: node
-      #   blueGreenMode:
-      #     active: false
-      #     blue:
-      #       config:
-      #         components:
-      #           kube-deployment:
-      #             replicaCount: 1
-      #             image:
-      #               tag: blue
-      #       enabled: true
-      #     enabled: true
-      #     green:
-      #       config:
-      #         components:
-      #           kube-deployment:
-      #             replicaCount: 1
-      #             image:
-      #               tag: green
-      #       enabled: true
-      #     main: blue
+  # name: nk-api
+  # config:
+  #   api:
+  #     deployedEnv: prod
+  #     logLevel: info
+  #     type: node
+  #   blueGreenMode:
+  #     active: false
+  #     blue:
+  #       config:
+  #         components:
+  #           kube-deployment:
+  #             replicaCount: 1
+  #             image:
+  #               tag: blue
+  #       enabled: true
+  #     enabled: true
+  #     green:
+  #       config:
+  #         components:
+  #           kube-deployment:
+  #             replicaCount: 1
+  #             image:
+  #               tag: green
+  #       enabled: true
+  #     main: blue
 
-      #   maintenanceMode:
-      #     active: false
-      #     config:
-      #       components:
-      #         kube-deployment:
-      #           replicaCount: 1
-      #           healthCheck:
-      #             enabled: false
-      #             path: /
-      #           image:
-      #             repository: rg.fr-par.scw.cloud/frog-cloud-scw-demo/maintenance
-      #             tag: latest
-      #           pod:
-      #             env:
-      #               secrets: null
-      #               values:
-      #               - name: TEAM_NAME
-      #                 value: frog-cloud
-      #               - name: TITLE
-      #                 value: Oops!
-      #               - name: MAIL_ADDRESS
-      #                 value: admin@frog-cloud.com
-      #               - name: LINK_COLOR
-      #                 value: '#dc8100'
-      #               - name: THEME
-      #                 value: Light
-      #               - name: PORT
-      #                 value: 8080
-      #               - name: RESPONSE_CODE
-      #                 value: 503 Service Unavailable
-      #               - name: MESSAGE
-      #                 value: |
-      #                   The website is currently under maintenance
-      #               - name: CONTACT_LINK
-      #                 value: contact us
-      #               valuesMap: null
-      #             mounts:
-      #               configMap: null
-      #         kube-service:
-      #           port: 8080
-      #     enabled: true
+  #   maintenanceMode:
+  #     active: false
+  #     config:
+  #       components:
+  #         kube-deployment:
+  #           replicaCount: 1
+  #           healthCheck:
+  #             enabled: false
+  #             path: /
+  #           image:
+  #             repository: rg.fr-par.scw.cloud/frog-cloud-scw-demo/maintenance
+  #             tag: latest
+  #           pod:
+  #             env:
+  #               secrets: null
+  #               values:
+  #               - name: TEAM_NAME
+  #                 value: frog-cloud
+  #               - name: TITLE
+  #                 value: Oops!
+  #               - name: MAIL_ADDRESS
+  #                 value: admin@frog-cloud.com
+  #               - name: LINK_COLOR
+  #                 value: '#dc8100'
+  #               - name: THEME
+  #                 value: Light
+  #               - name: PORT
+  #                 value: 8080
+  #               - name: RESPONSE_CODE
+  #                 value: 503 Service Unavailable
+  #               - name: MESSAGE
+  #                 value: |
+  #                   The website is currently under maintenance
+  #               - name: CONTACT_LINK
+  #                 value: contact us
+  #               valuesMap: null
+  #             mounts:
+  #               configMap: null
+  #         kube-service:
+  #           port: 8080
+  #     enabled: true
 
+  # components:
+  #   kube-deployment:
+  #     enabled: true
+  #     healthCheck:
+  #       enabled: true
+  #       path: /
 
-      # components:
-      #   kube-deployment:
-      #     enabled: true
-      #     healthCheck:
-      #       enabled: true
-      #       path: /
+  #     metrics:
+  #       enabled: false
+  #       serviceMonitor:
+  #         enabled: false
+  #         interval: 2s
+  #     defaultImagePoliciesEnabled: false
+  #     defaultImagePolicy: default
+  #     logging:
+  #       enabled: true
+  #     pod:
+  #       env:
+  #         secrets:
+  #         - secretKey: CLOUD_ACCESS_KEY
+  #           secretName: nk-api-cloud
+  #         - secretKey: CLOUD_SECRET_KEY
+  #           secretName: nk-api-cloud
+  #         - secretKey: CLOUD_BUCKET_NAME
+  #           secretName: nk-api-cloud
+  #     resources:
+  #       limits:
+  #         cpu: 300m
+  #         memory: 300Mi
+  #       requests:
+  #         cpu: 300m
+  #         memory: 300Mi
+  #     image:
+  #       repository: rg.fr-par.scw.cloud/frog-cloud-scw-demo/demo-app
+  #       tag: preview
+  #     annotations:
+  #       reloader.stakater.com/auto: "true"
+  #     replicaCount: 3
 
-      #     metrics:
-      #       enabled: false
-      #       serviceMonitor:
-      #         enabled: false
-      #         interval: 2s
-      #     defaultImagePoliciesEnabled: false
-      #     defaultImagePolicy: default
-      #     logging:
-      #       enabled: true
-      #     pod:
-      #       env:
-      #         secrets:
-      #         - secretKey: CLOUD_ACCESS_KEY
-      #           secretName: nk-api-cloud
-      #         - secretKey: CLOUD_SECRET_KEY
-      #           secretName: nk-api-cloud
-      #         - secretKey: CLOUD_BUCKET_NAME
-      #           secretName: nk-api-cloud
-      #     resources:
-      #       limits:
-      #         cpu: 300m
-      #         memory: 300Mi
-      #       requests:
-      #         cpu: 300m
-      #         memory: 300Mi
-      #     image:
-      #       repository: rg.fr-par.scw.cloud/frog-cloud-scw-demo/demo-app
-      #       tag: preview
-      #     annotations:
-      #       reloader.stakater.com/auto: "true"
-      #     replicaCount: 3
+  #   flux-imagerepository:
+  #     enabled: false
+  #     interval: 1m0s
+  #     secretName: docker-registry-admin
 
-      #   flux-imagerepository:
-      #     enabled: false
-      #     interval: 1m0s
-      #     secretName: docker-registry-admin
+  #   flux-imageupdateautomation:
+  #     enabled: false
+  #     git:
+  #       author:
+  #         email: KUBE_CORE_GIT_BOT_USER
+  #         name: KUBE_CORE_GIT_BOT_NAME
+  #       message: 'chore: Updating images'
+  #       pushRef:
+  #         branch: KUBE_CORE_GITOPS_REF
+  #       ref:
+  #         branch: KUBE_CORE_GITOPS_REF
+  #       sourceRef: scw-demo
+  #     interval: 1m0s
+  #     update:
+  #       path: /config/gitops/prod/nk-api
+  #       strategy: Setters
 
-      #   flux-imageupdateautomation:
-      #     enabled: false
-      #     git:
-      #       author:
-      #         email: KUBE_CORE_GIT_BOT_USER
-      #         name: KUBE_CORE_GIT_BOT_NAME
-      #       message: 'chore: Updating images'
-      #       pushRef:
-      #         branch: KUBE_CORE_GITOPS_REF
-      #       ref:
-      #         branch: KUBE_CORE_GITOPS_REF
-      #       sourceRef: scw-demo
-      #     interval: 1m0s
-      #     update:
-      #       path: /config/gitops/prod/nk-api
-      #       strategy: Setters
+  #   kube-hpa:
+  #     cpu: 80
+  #     enabled: true
+  #     maxReplicas: 10
+  #     memory: 80
+  #     minReplicas: 1
 
+  #   app-ingress:
+  #     annotations: null
+  #     className: nginx
+  #     enabled: true
+  #     globalEasyTls: true
+  #     host: app.demo.scw.frog-cloud.io
+  #     labels: null
+  #     options:
+  #       accessFiltered: true
+  #       allowedVisitors: self,admin
+  #       autoDiscover: true
+  #       clusterIssuer: letsencrypt-dns-production
+  #       previewVisitors: self,admin
+  #       proxyBodySize: 200m
+  #       serviceUpstream: true
+  #       ttl: 5
+  #       upstreamVhost: nk-api.prod.svc.cluster.local
 
-      #   kube-hpa:
-      #     cpu: 80
-      #     enabled: true
-      #     maxReplicas: 10
-      #     memory: 80
-      #     minReplicas: 1
+  #   kube-service:
+  #     enabled: true
+  #     port: 8080
+  #     type: ClusterIP
 
-      #   app-ingress:
-      #     annotations: null
-      #     className: nginx
-      #     enabled: true
-      #     globalEasyTls: true
-      #     host: app.demo.scw.frog-cloud.io
-      #     labels: null
-      #     options:
-      #       accessFiltered: true
-      #       allowedVisitors: self,admin
-      #       autoDiscover: true
-      #       clusterIssuer: letsencrypt-dns-production
-      #       previewVisitors: self,admin
-      #       proxyBodySize: 200m
-      #       serviceUpstream: true
-      #       ttl: 5
-      #       upstreamVhost: nk-api.prod.svc.cluster.local
-
-
-      #   kube-service:
-      #     enabled: true
-      #     port: 8080
-      #     type: ClusterIP
-
-      #   kube-pdb:
-      #     enabled: true
+  #   kube-pdb:
+  #     enabled: true

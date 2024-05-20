@@ -37,6 +37,7 @@
 {{- $errorQuery = (coalesce $resource.errorQuery $errorQuery) }}
 {{- $totalQuery = (coalesce $resource.totalQuery $totalQuery) }}
 {{- $successQuery := (coalesce $resource.successQuery) }}
+{{- $indicatorType := (coalesce $resource.indicatorType "ratio") }}
 
 {{ if $resource.enabled }}
 apiVersion: pyrra.dev/v1alpha1
@@ -54,7 +55,7 @@ spec:
   window: {{ $resource.window | quote }}
   description: {{ $resource.description | quote }}
   indicator:
-    {{ $resource.indicatorType }}:
+    {{ $indicatorType }}:
       {{ if $successQuery }}
       success:
         metric: {{ $successQuery }}

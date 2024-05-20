@@ -10,5 +10,3 @@
 {{- range $resourceKey, $resourceConfig := index $values $resourceType }}
 {{- include "app-extensions.include.resource" (dict "baseValues" $values "resourceType" $resourceType "resourceTypePlural" $resourceTypePlural "resourceKey" $resourceKey "resourceConfig" $resourceConfig "kindName" $resourceKey) }}
 {{- end }}
-
-{{- include "app-extensions.include.dump" . }}

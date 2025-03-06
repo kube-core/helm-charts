@@ -166,6 +166,21 @@ spec:
           timeoutSeconds: {{ default $values.healthCheck.timeoutSeconds $values.healthCheck.readiness.timeoutSeconds }}
           failureThreshold: {{ default $values.healthCheck.failureThreshold $values.healthCheck.readiness.failureThreshold }}
         {{- end }}
+        {{- if and $values.healthCheck.enabled $values.healthCheck.startup.enabled }}
+        startupProbe:
+          {{- if or $values.healthCheck.tcpSocket $values.healthCheck.startup.tcpSocket }}
+          tcpSocket:
+            port: {{ default ( default $service.port $values.healthCheck.port ) $values.healthCheck.startup.port  }}
+          {{- else }}
+          httpGet:
+            path: {{ default $values.healthCheck.path $values.healthCheck.startup.path }}
+            port: {{ default ( default $service.port $values.healthCheck.port ) $values.healthCheck.startup.port  }}
+          {{- end }}
+          initialDelaySeconds: {{ default $values.healthCheck.initialDelaySeconds $values.healthCheck.startup.initialDelaySeconds }}
+          periodSeconds: {{ default $values.healthCheck.periodSeconds $values.healthCheck.startup.periodSeconds }}
+          timeoutSeconds: {{ default $values.healthCheck.timeoutSeconds $values.healthCheck.startup.timeoutSeconds }}
+          failureThreshold: {{ default $values.healthCheck.failureThreshold $values.healthCheck.startup.failureThreshold }}
+        {{- end }}
         {{- if (and ($values.pod.envFrom.enabled) (or $values.pod.envFrom.configmaps $values.pod.envFrom.secrets)) }}
         envFrom:
         {{- range $values.pod.envFrom.configmaps }}

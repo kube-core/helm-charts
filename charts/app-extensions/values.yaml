@@ -268,6 +268,16 @@ resource:
         # periodSeconds: 10
         # timeoutSeconds: 1
         # failureThreshold: 3
+      startup:
+        enabled: false
+        ## Values to override global healtcheck values
+        # tcpSocket:
+        # port: ""
+        # path: /
+        # initialDelaySeconds: 3
+        # periodSeconds: 10
+        # timeoutSeconds: 1
+        # failureThreshold: 3
 
   kube-service:
     enabled: false

@@ -13,6 +13,7 @@ metadata:
   labels:
     dashboards: "grafana" ## TO REVIEW
 spec:
+  version: {{ $values.version | quote }}
   config:
     log:
       mode: "console"

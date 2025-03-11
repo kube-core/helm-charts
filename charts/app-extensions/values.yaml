@@ -530,6 +530,7 @@ resource:
   grafana-instance:
     enabled: false
     labels: {}
+    version: {}
     settings:
       anonymousUsers:
         allowAccess: false

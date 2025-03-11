@@ -526,9 +526,59 @@ resource:
     update:
       path: ./config
       strategy: Setters
-# resources: {}
-resources:
-  {}
+
+  grafana-instance:
+    enabled: false
+    labels: {}
+    version: {}
+    settings:
+      anonymousUsers:
+        allowAccess: false
+        defaultRole: Viewer
+      admin:
+        userName: admin
+        password: admin
+        passwordSecretRef:
+          name:
+          key: GF_SECURITY_ADMIN_PASSWORD
+      dateFormats:
+        fullDate: HH:mm:ss DD-MM-YYYY
+        intervals:
+          intervalSecond: HH:mm:ss
+          intervalMinute: HH:mm
+          intervalHour: DD/MM HH:mm
+          intervalDay: DD/MM
+          intervalMonth: MM-YYYY
+          intervalYear: YYYY
+        defaultTimezone: Europe/Paris
+        defaultWeekStart: monday
+  grafana-datasource:
+    enabled: false
+    isDefault: false
+    type: prometheus
+    url:
+    jsonData: {}
+    plugins: []
+      # - name: grafana-piechart-panel
+      #   version: 1.3.9
+  grafana-dashboard:
+    enabled: false
+    folder: default
+    datasources: []
+      # - inputName: DS_PROMETHEUS
+      #   datasourceName: "default"
+    source:
+      url:
+      grafana:
+        id:
+        revision:
+    plugins: []
+      # - name: grafana-piechart-panel
+      #   version: 1.3.9
+
+
+
+resources: {}
   # kube-ingress:
   #   test:
   #     enabled: true

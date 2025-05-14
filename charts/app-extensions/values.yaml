@@ -634,8 +634,22 @@ resources: {}
 #   rabbitmq-vhost:
 #     nk-api: {}
 
-#   rabbitmq-cluster:
-#     nk-api: {}
+  # rabbitmq-cluster:
+  #   nk-api:
+  #     replicaCount: 1
+  #     tolerations:
+  #     affinity:
+  #     nodeSelector:
+  #     resources:
+  #       limits:
+  #         cpu: "2"
+  #         memory: 2Gi
+  #       requests:
+  #         cpu: "0.3"
+  #         memory: 128M
+  #     rabbitmq: {}
+  #     override: {}
+  #     extraSpec: {}
 
 #   rabbitmq-policy:
 #     nk-api: {}

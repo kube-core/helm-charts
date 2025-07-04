@@ -1,5 +1,5 @@
 {{- define "app-extensions.kube-ingress" -}}
-{{ $values := .value }}
+{{- $values := .value }}
 {{- $name := (coalesce $values.name .key) }}
 {{- $resourceName := (coalesce $values.resourceName $values.name .key) }}
 {{- $composition := .composition }}
@@ -24,8 +24,8 @@
 {{- $host = (printf "%s.%s" $hostPrefix $host) }}
 {{- end }}
 
-{{ $portName := coalesce $values.portName "http" }}
-{{ $portNumber := coalesce $values.portNumber "8080" }}
+{{- $portName := coalesce $values.portName "http" }}
+{{- $portNumber := coalesce $values.portNumber "8080" }}
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
